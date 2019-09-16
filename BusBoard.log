@@ -6,8 +6,8 @@ INFO:root:The user chose to see 4 bus time(s).
 INFO:root:Departure information converted into a json format
 INFO:root:Bus departure details are being collected and formatted.
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): transportapi.com:443
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0180BAC30302///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4 HTTP/1.1" 302 None
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0180BAC30302/2019-09-16/12:26/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0180BAC30302///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses=no%20 HTTP/1.1" 302 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0180BAC30302/2019-09-16/13:43/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses%3Dno+ HTTP/1.1" 200 None
 INFO:root:Departure information was pulled from the transport API.
 INFO:root:Bus departure times were displayed to the user.
 INFO:root:Program terminated.

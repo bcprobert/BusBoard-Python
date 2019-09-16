@@ -11,8 +11,9 @@ class WebApi:
         self.atcocode = input("Please enter the code for the bus stop:")
         logging.info("User entered an AtcoCode. The code entered was: " + self.atcocode)
         limit = limit_check()
-        self.url = "https://transportapi.com/v3/uk/bus/stop/" + self.atcocode + "///timetable.json?app_id=01b1cb2e" \
-                   "&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=" + limit + "nextbuses=no "
+        i_d, key = get_secrets() # gets my API key and ID from a separate document not stored on GitHub
+        self.url = "https://transportapi.com/v3/uk/bus/stop/" + self.atcocode + "///timetable.json?app_id=" + i_d[0] + \
+                   "&app_key=" + key[0] + "&group=no&limit=" + limit + "nextbuses=no "
 
     def read_url(self):
         r = requests.get(self.url)  # pulls bus departure information from the transport API about the next bus
@@ -30,9 +31,9 @@ class WebApi:
                 resume = False
             except KeyError:
                 print("Sorry. No data was found for the bus stop with AtcoCode: " + self.atcocode + ". Program "
-                                                                                                    "terminated")  # occurs when an invalid AtcoCode is entered by the user
+                      "terminated")  # occurs when an invalid AtcoCode is entered by the user
                 logging.info("The user entered an invalid AtcoCode. The user entered: " + self.atcocode + ". The"
-                                                                                                          "program was terminated.")
+                             "program was terminated.")
                 break
 
     def get_line_and_time(self, lineandtime_dict):  # pulls out information about the bus number and its departure time
@@ -43,6 +44,15 @@ class WebApi:
         for i in range(0, len(lineandtime_dict)):
             print("Bus number " + lineandtime_dict[i][0] + " is leaving at: " + lineandtime_dict[i][1])
         logging.info("Bus departure times were displayed to the user.")
+
+
+def get_secrets():  # function that reads my private API ID and key from a secret text file
+    with open("secrets.txt", "r") as file:
+        secret_contents = file.read()
+        i_d = re.findall(r"App ID: (\w{8})", secret_contents)
+        key = re.findall(r"Key: (\w{32})", secret_contents)
+        logging.info("API Key and ID retrieved successfully.")
+    return i_d, key
 
 
 def limit_check():
