@@ -1,0 +1,6 @@
+INFO:root:Program initialised.
+INFO:root:User entered an AtcoCode. The code entered was: k
+INFO:root:The user chose to see 4 bus time(s).
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): transportapi.com:443
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/k///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=5=route&limit=4 HTTP/1.1" 302 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/k/2019-09-16/11:48/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4 HTTP/1.1" 404 None
