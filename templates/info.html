@@ -3,8 +3,40 @@
 {% block content %}
 <div class="container body-content">
     <h2>Bus Information</h2>
+        <marquee behavior="scroll" bgcolor="slateblue" loop="-1" width="230">
+       <i>
+          <font color="white">
+            The time is :
+            <strong>
+             <span id="time"></span>
+            </strong>
+          </font>
+       </i>
+    </marquee>
+    <script language="javascript">
+        var today = new Date();
+        var time = (("0"+today.getHours()).slice(-2))+ ":" + (("0"+today.getMinutes()).slice(-2));
+        document.getElementById("time").innerHTML=time;
+    </script>
     <div>
-        <p>You entered postcode <span>{{ postcode }}</span></p>
+        <p>You entered postcode <span><b>{{ postcode.upper() }}</b></span></p>
+        {% for stop in stops %}
+        <div><h1 style="color:slateblue;"> {{ stop.name }} </h1></div>
+        <table style="width:1000">
+            <tr>
+                <th style="text-align:center"> Line Number</th>
+                <th style="text-align:center"> Departure Time</th>
+                <th style="text-align:center"> Destination</th>
+            </tr>
+            {% for departure in stop.departures %}
+                <tr>
+                    <td style="text-align:center"> {{ departure.line_num.upper() }}</td>
+                    <td style="text-align:center"> {{ departure.time }}</td>
+                    <td style="text-align:center"> {{ departure.destination}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

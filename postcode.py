@@ -1,14 +1,28 @@
 import requests
 import logging
 import re
+from flask import request
 
 logging.basicConfig(filename='BusBoard.log', filemode='w', level=logging.DEBUG)  # configures the log
 
 
+class Departure:
+    def __init__(self, time, destination, line_num):
+        self.time = time
+        self.destination = destination
+        self.line_num = line_num
+
+
+class Stop:
+    def __init__(self, name, departures):
+        self.name = name
+        self.departures = departures
+
+
 class PostcodeApi:
-    def __init__(self):
-        self.postcode = input("Please enter a post code: (e.g. ABC 123)\n")
-        self.pc_url = self.postcode_check()
+    def __init__(self, postcode, stops):
+        self.postcode = postcode
+        self.stops = stops
 
     def postcode_check(self):
         if re.search(r"(\D{1,2}\w{1,2}? ?\d\D+)", self.postcode.lower()):
@@ -19,7 +33,8 @@ class PostcodeApi:
             print("Sorry. That postcode was not recognised. Program terminated.")
 
     def read_postcode_url(self):
-        read = requests.get(self.pc_url)
+        pc_url = self.postcode_check()
+        read = requests.get(pc_url)
         logging.info("Postcode's information was pulled from the postcode API.")
         return read.json()
 
@@ -72,23 +87,6 @@ class TransportApi:
 
         return stop1_json, stop2_json
 
-    def get_lineandtime(self, lineandtime_list1, lineandtime_list2):
-        first_stop, second_stop = self.read_bus_dep_url()
-        for departure in first_stop["departures"]["all"]:
-            lineandtime_list1.append((departure["line_name"], departure["aimed_departure_time"]))
-
-        for departure in second_stop["departures"]["all"]:
-            lineandtime_list2.append((departure["line_name"], departure["aimed_departure_time"]))
-
-        print("The next buses leaving your two nearest stops are:")
-        for i in range(0, len(lineandtime_list1)):
-            print("Bus stop: " + first_stop["name"] + ". Bus number " + lineandtime_list1[i][0] + " is leaving at: " +
-                  lineandtime_list1[i][1])
-        for i in range(0, len(lineandtime_list2)):
-            print("Bus stop: " + second_stop["name"] + ". Bus number " + lineandtime_list2[i][0] + " is leaving at: " +
-                  lineandtime_list2[i][1])
-        logging.info("Bus departure times were displayed to the user.")
-
 
 def get_secrets():  # function that reads my private API ID and key from a secret text file
     with open("secrets.txt", "r") as file:
@@ -102,7 +100,7 @@ def get_secrets():  # function that reads my private API ID and key from a secre
 def limit_check():
     cont = True
     while cont:
-        limit = input("Please enter how many bus times you would like to see:\n")
+        limit = request.args.get("limit")
         logging.info("User was asked to enter the number of bus times they require.")
         if re.findall(r"\d+", limit):
             logging.info("The user chose to see " + limit + " bus time(s).")
@@ -110,19 +108,3 @@ def limit_check():
         else:
             print("Sorry. That value is invalid.")
             logging.info("The user entered an invalid limit value. The value they entered was: " + limit + ".")
-
-
-def main():
-    logging.info("Program initialised.")
-    print("Welcome to BusBoard.")
-    postcode_details = []
-    bus_details1 = []
-    bus_details2 = []
-    postcode_info = PostcodeApi()
-    transport_info = TransportApi(postcode_info)
-    postcode_info.get_lat_long()
-    transport_info.get_lineandtime(bus_details1, bus_details2)
-    logging.info("Program terminated.")
-
-
-if __name__ == "__main__": main()
