@@ -67,6 +67,7 @@ class TransportApi:
 
     def find_bus_departures(self):
         limit = limit_check()
+        refresh_rate = 30
         i_d, key = get_secrets()
         nearest_stops = []
         stop1, stop2 = self.get_nearest_stops(nearest_stops)

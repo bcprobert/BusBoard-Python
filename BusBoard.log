@@ -1,12 +1,12 @@
 INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 INFO:root:Program initialised.
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.postcodes.io:443
-DEBUG:urllib3.connectionpool:https://api.postcodes.io:443 "GET /postcodes/bs1%204bb HTTP/1.1" 200 819
+DEBUG:urllib3.connectionpool:https://api.postcodes.io:443 "GET /postcodes/gu10%204jz HTTP/1.1" 200 817
 INFO:root:Postcode's information was pulled from the postcode API.
 INFO:root:Latitude and longitude were retrieved for the requested postcode
 INFO:root:API Key and ID retrieved successfully.
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.postcodes.io:443
-DEBUG:urllib3.connectionpool:https://api.postcodes.io:443 "GET /postcodes/bs1%204bb HTTP/1.1" 200 819
+DEBUG:urllib3.connectionpool:https://api.postcodes.io:443 "GET /postcodes/gu10%204jz HTTP/1.1" 200 817
 INFO:root:Postcode's information was pulled from the postcode API.
 INFO:root:Latitude and longitude were retrieved for the requested postcode
 INFO:root:Program complete.
@@ -14,13 +14,13 @@ INFO:root:User was asked to enter the number of bus times they require.
 INFO:root:The user chose to see 4 bus time(s).
 INFO:root:API Key and ID retrieved successfully.
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): transportapi.com:443
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/places.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&lat=51.449896&lon=-2.597271&type=bus_stop HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/places.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&lat=51.187466&lon=-0.834519&type=bus_stop HTTP/1.1" 200 None
 INFO:root:Departure information was pulled from the transport API.
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): transportapi.com:443
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0100BRP90355///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses=no%20 HTTP/1.1" 302 None
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0100BRP90355/2019-09-17/16:07/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses%3Dno+ HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/1900HA020426///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses=no%20 HTTP/1.1" 302 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/1900HA020426/2019-09-17/17:07/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses%3Dno+ HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): transportapi.com:443
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0100BRX32922///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses=no%20 HTTP/1.1" 302 None
-DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/0100BRX32922/2019-09-17/16:07/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses%3Dno+ HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/1900HA020425///timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses=no%20 HTTP/1.1" 302 None
+DEBUG:urllib3.connectionpool:https://transportapi.com:443 "GET /v3/uk/bus/stop/1900HA020425/2019-09-17/17:07/timetable.json?app_id=01b1cb2e&app_key=4dd9957ce60335a0f9c2625ac4041aec&group=no&limit=4nextbuses%3Dno+ HTTP/1.1" 200 None
 INFO:root:Program terminated.
-INFO:werkzeug:127.0.0.1 - - [17/Sep/2019 16:07:27] "GET /busInfo?postcode=bs1+4bb&limit=4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Sep/2019 17:07:46] "GET /busInfo?postcode=gu10+4jz&limit=4 HTTP/1.1" 200 -
